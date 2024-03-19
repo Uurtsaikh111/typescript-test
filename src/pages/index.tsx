@@ -1,11 +1,9 @@
-
 import { Card } from "@/components/Card";
 import { Content } from "@/components/Content";
 import { useState } from "react";
-export default function Home() {
 
-  
-  const [cont, setCont] = useState("1");
+export default function Home() {
+  const [cont, setCont] = useState<string>("1");
   let sideMenus = [
     {
       title: "Card1",
@@ -72,20 +70,20 @@ export default function Home() {
     },
   ];
   return (
-    <main>
-      {sideMenus.map((menu,id) => (
-        <div className="flex">
-          <div className="w-1/2">
-            <Card menu={menu} id={id} setCont={setCont} />
+    <div>
+      {sideMenus.map((menu, id) => {
+        console.log(id);
+        return (
+          <div className="flex" key={id}>
+            <div className="w-1/2">
+              <Card menu={menu} setCont={setCont} />
+            </div>
+            <div>
+              <Content menu={menu} cont={cont} />
+            </div>
           </div>
-          <div >
-            <div className="border p-1 bg-slate-400 rounded">{menu.title}</div>
-            {menu.content.map((content,id) => (
-              <Content content={content} id={id} cont={cont}/>
-            ))}
-          </div>
-        </div>
-      ))}
-    </main>
+        );
+      })}
+    </div>
   );
 }

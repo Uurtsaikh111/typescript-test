@@ -1,15 +1,32 @@
-type ContentType = {
-    title: string;
-    text: string;
-    isVerified: boolean;
-  };
-  export const Content = ({ content,cont,id}: { content: ContentType , cont: string,id:number}) => {
-  if(cont=="0"){
+type ContentArray = {
+  title: string;
+  text: string;
+  isVerified: boolean;
+};
+
+type MenuType = {
+  title: string;
+  buttonText: string;
+  content: Array<ContentArray>;
+};
+
+export const Content = ({ menu, cont }: { menu: MenuType; cont: string }) => {
+  if (cont == "0") {
     return (
-      <div key={id} >
-        <div className="border p-2 bg-red-400"> {content.title} </div>
-        <div className="border p-1 bg-red-300">{content.text} </div>
+      <div>
+        {menu.content.map((a, id) => {
+         
+          return (
+            <div key={id + a.title} className="flex gap-1">
+              <div>{a.title}</div>
+              <div>
+                {a.text}
+                {a.title}
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
-  } 
-  };
+  }
+};

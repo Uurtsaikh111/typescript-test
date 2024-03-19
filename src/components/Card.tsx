@@ -1,3 +1,4 @@
+import { Dispatch } from "react";
 
 
 type ContentArray = {
@@ -17,11 +18,15 @@ type ContentArray = {
   export const Card = ({
     menu,
     setCont,
-    id,
+   
   }: {
     menu: MenuType;
-    setCont: any;
-    id:number
+    setCont:
+    // Dispatch<React.SetStateAction<string>>;
+ (value:string) => void;
+    //(arg0:string) =>void;
+   
+    
   }) => {
     return (
       <div 
@@ -29,8 +34,11 @@ type ContentArray = {
       className="flex">
         <button
           className="w-[250px] h-10 bg-red-300 flex justify-center items-center border rounded-[15px]"
-          onClick={()=>setCont("0")}
-          key={id}
+          
+        
+         onClick={()=>
+          setCont("0")}
+        
 
         >
           {menu.buttonText} 
