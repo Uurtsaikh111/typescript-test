@@ -3,9 +3,9 @@ import { Content } from "@/components/Content";
 import { useState } from "react";
 
 export default function Home() {
-  const [cont, setCont] = useState<string>("1");
+  const [cont, setCont] = useState<number>(0);
   let sideMenus = [
-    {
+    { id:0,
       title: "Card1",
       buttonText: "Card1 open content",
       content: [
@@ -26,7 +26,7 @@ export default function Home() {
         },
       ],
     },
-    {
+    { id:1,
       title: "Card2",
       buttonText: "Card2 open content",
       content: [
@@ -47,7 +47,7 @@ export default function Home() {
         },
       ],
     },
-    {
+    { id:2,
       title: "Card3",
       buttonText: "Card3 open content",
       content: [
@@ -72,15 +72,14 @@ export default function Home() {
   return (
     <div>
       {sideMenus.map((menu, id) => {
-        console.log(id);
         return (
-          <div className="flex" key={id}>
+          <div className="flex">
             <div className="w-1/2">
-              <Card menu={menu} setCont={setCont} />
+              <Card menu={menu} key={id} setCont={setCont} />
             </div>
-            <div>
-              <Content menu={menu} cont={cont} />
-            </div>
+          
+              <Content data={sideMenus[cont]} />
+            
           </div>
         );
       })}
